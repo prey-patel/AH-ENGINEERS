@@ -6,10 +6,15 @@ export default function TopBar() {
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         {/* Info Contact */}
         <div className="flex items-center gap-6">
-          <div className="flex items-center gap-2 hover:text-white transition-colors duration-200">
+          <a
+            href="https://maps.google.com/?q=Plot+No.+B/14+Swaminarayan+Wadi+Asarva+Ahmedabad"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 hover:text-white transition-colors duration-200"
+          >
             <MapPin size={14} className="text-primary" />
             <span>Asarva, Ahmedabad, India</span>
-          </div>
+          </a>
           <div className="flex items-center gap-2 hover:text-white transition-colors duration-200">
             <Phone size={14} className="text-primary" />
             <a href="tel:+919879056926">+91 98790 56926</a>

@@ -67,11 +67,16 @@ export default function ContactPreview() {
               </div>
               <div>
                 <h4 className="text-xs font-bold text-navy uppercase tracking-wider">Plant Address</h4>
-                <p className="text-sm text-slate-500 font-semibold mt-1 leading-relaxed">
+                <a
+                  href="https://maps.google.com/?q=Plot+No.+B/14+Swaminarayan+Wadi+Asarva+Ahmedabad"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-slate-500 font-semibold mt-1 leading-relaxed hover:text-primary transition-colors block"
+                >
                   Plot No. : B/14, Swaminarayan Wadi, <br />
                   Nr. Swaminarayan Gurukul, Hathikhana Babupura, <br />
                   Asarva Road, Asarva, Ahmedabad - 380016, Gujarat, India
-                </p>
+                </a>
               </div>
             </div>
 
@@ -81,9 +86,8 @@ export default function ContactPreview() {
               </div>
               <div>
                 <h4 className="text-xs font-bold text-navy uppercase tracking-wider">Call Inquiries</h4>
-                <p className="text-sm text-slate-500 font-semibold mt-1 flex flex-col gap-0.5">
-                  <span>Direct: +91 98790 56926</span>
-                  <span>Support: +91 98790 56926</span>
+                <p className="text-sm text-slate-500 font-semibold mt-1">
+                  <a href="tel:+919879056926" className="hover:text-primary transition-colors">+91 98790 56926</a>
                 </p>
               </div>
             </div>
