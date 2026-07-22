@@ -29,6 +29,77 @@ const itemVariants: Variants = {
   },
 };
 
+// Enhancement 1 & 2: 3D Split-Flap Letter Tumbler with Molten-to-Emerald Cooling
+interface LetterTumblerProps {
+  text: string;
+  isHighlight?: boolean;
+  wordIndex: number;
+  startDelay: number;
+}
+
+function LetterTumbler({ text, isHighlight = false, wordIndex, startDelay }: LetterTumblerProps) {
+  return (
+    <span className="inline-block whitespace-nowrap mr-[0.28em] [perspective:1000px] [transform-style:preserve-3d]">
+      {text.split("").map((char, charIdx) => {
+        const letterDelay = startDelay + wordIndex * 0.12 + charIdx * 0.03;
+
+        return (
+          <motion.span
+            key={charIdx}
+            initial={{
+              opacity: 0,
+              rotateX: -95,
+              y: 28,
+              scale: 0.85,
+            }}
+            animate={{
+              opacity: 1,
+              rotateX: 0,
+              y: 0,
+              scale: 1,
+            }}
+            transition={{
+              duration: 0.75,
+              delay: letterDelay,
+              type: "spring",
+              stiffness: 130,
+              damping: 14,
+            }}
+            style={{
+              transformOrigin: "top center",
+              display: "inline-block",
+              backfaceVisibility: "hidden",
+            }}
+          >
+            {isHighlight ? (
+              <motion.span
+                initial={{
+                  color: "#fffbeb",
+                  filter: "drop-shadow(0 0 25px #f59e0b) brightness(2.5)",
+                }}
+                animate={{
+                  color: "transparent",
+                  filter: "drop-shadow(0 0 10px rgba(52, 211, 153, 0.5)) brightness(1)",
+                }}
+                transition={{
+                  delay: letterDelay + 0.35,
+                  duration: 1.4,
+                  ease: "easeOut",
+                }}
+                className="bg-gradient-to-r from-primary via-emerald-400 to-primary bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient-slow font-black inline-block"
+              >
+                {char}
+              </motion.span>
+            ) : (
+              <span className="text-white font-black">{char}</span>
+            )}
+          </motion.span>
+        );
+      })}
+    </span>
+  );
+}
+
 export default function Hero() {
   // Mouse position values for 3D parallax effects on floating components
   const mouseX = useMotionValue(0);
@@ -103,8 +174,7 @@ export default function Hero() {
       {/* 3. Grid Overlay for Industrial Aesthetic */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_40%,#000_70%,transparent_100%)] pointer-events-none" />
 
-      {/* 4. Floating 3D Engineering Elements (Gears, Hex Nut, Bolts) with Gentle Motion on All Devices */}
-      {/* Gear SVG 1 */}
+      {/* 4. Floating 3D Engineering Elements */}
       <motion.div
         style={{ x: floatX1, y: floatY1 }}
         animate={{ y: [0, -16, 0], rotate: [0, 360] }}
@@ -131,7 +201,6 @@ export default function Hero() {
         </svg>
       </motion.div>
 
-      {/* Hex Nut SVG 2 */}
       <motion.div
         style={{ x: floatX2, y: floatY2 }}
         animate={{ y: [0, 20, 0], rotate: [0, -360] }}
@@ -148,7 +217,6 @@ export default function Hero() {
         </svg>
       </motion.div>
 
-      {/* Structural Bolt SVG 3 */}
       <motion.div
         style={{ x: floatX3, y: floatY3 }}
         animate={{ y: [0, -14, 0], rotate: [0, 12, -12, 0] }}
@@ -168,98 +236,83 @@ export default function Hero() {
         </svg>
       </motion.div>
 
-      {/* 5. Main Content Area with Staggered Framer Motion Animations */}
+      {/* 5. Main Content Area with Concept 1 Pro Enhancements */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 w-full">
-        <motion.div
-          className="max-w-3xl"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
+        <div className="max-w-3xl">
           {/* Badge */}
-          <motion.div variants={itemVariants}>
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+          >
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 text-xs font-bold uppercase tracking-wider text-slate-300 mb-6 shadow-lg shadow-black/40 backdrop-blur-md">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
               Leading Indian Industrial Manufacturer
             </div>
           </motion.div>
 
-          {/* Concept 2: CNC Laser-Scan Engraving Effect Container */}
+          {/* Concept 1 Pro: 3D Split-Flap Letter Tumbler Animated Heading */}
           <div className="relative">
-            {/* Moving Glowing Laser Scanline Sweep */}
-            <motion.div
-              initial={{ y: "0%", opacity: 0 }}
-              animate={{
-                y: ["0%", "100%"],
-                opacity: [0, 1, 1, 0],
-              }}
-              transition={{
-                duration: 2.0,
-                ease: "easeInOut",
-                delay: 0.2,
-              }}
-              className="absolute left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-emerald-400 to-transparent shadow-[0_0_20px_#34d399] z-20 pointer-events-none"
-            />
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-black tracking-tight leading-[1.15] text-white mb-2">
+              <LetterTumbler text="Precision" wordIndex={0} startDelay={0.25} />
+              <LetterTumbler text="Engineering" wordIndex={1} startDelay={0.25} />
+              <br className="hidden sm:inline" />
+              <LetterTumbler text="Solutions" wordIndex={2} startDelay={0.25} />
+              
+              <span className="relative inline-block">
+                <LetterTumbler text="Built" isHighlight wordIndex={3} startDelay={0.25} />
+                <LetterTumbler text="to" isHighlight wordIndex={4} startDelay={0.25} />
+                <LetterTumbler text="Last" isHighlight wordIndex={5} startDelay={0.25} />
 
-            {/* Laser Engraved Heading */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-black tracking-tight leading-[1.15] text-white mb-6">
-              {[
-                { word: "Precision", breakAfter: false },
-                { word: "Engineering", breakAfter: true },
-                { word: "Solutions", breakAfter: false },
-              ].map((item, idx) => (
-                <span key={idx} className="inline-block">
-                  <motion.span
-                    initial={{ opacity: 0, filter: "drop-shadow(0 0 25px #34d399) brightness(2.5)", y: 12 }}
-                    animate={{ opacity: 1, filter: "drop-shadow(0 0 0px transparent) brightness(1)", y: 0 }}
-                    transition={{
-                      duration: 0.7,
-                      delay: 0.3 + idx * 0.18,
-                      ease: "easeOut",
-                    }}
-                    className="inline-block mr-[0.25em] text-white"
-                  >
-                    {item.word}
-                  </motion.span>
-                  {item.breakAfter && <br className="hidden sm:inline" />}
-                </span>
-              ))}
-
-              {/* Built to Last Laser Beam Highlight */}
-              <span className="relative inline-block overflow-hidden">
-                <motion.span
-                  initial={{ opacity: 0, filter: "drop-shadow(0 0 35px #34d399) brightness(3)", scale: 0.94 }}
-                  animate={{ opacity: 1, filter: "drop-shadow(0 0 10px rgba(52, 211, 153, 0.4)) brightness(1)", scale: 1 }}
-                  transition={{ duration: 0.9, delay: 0.95, ease: "easeOut" }}
-                  className="bg-gradient-to-r from-primary via-emerald-400 to-primary bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient-slow font-black inline-block"
-                >
-                  Built to Last
-                </motion.span>
-
-                {/* Laser Flare Sweep across Built to Last */}
+                {/* Enhancement 3: Impact Shockwave Flare Ring */}
                 <motion.div
-                  initial={{ x: "-100%" }}
-                  animate={{ x: "200%" }}
-                  transition={{ duration: 1.1, delay: 1.05, ease: "easeInOut" }}
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/80 to-transparent w-1/2 -skew-x-12 pointer-events-none"
+                  initial={{ scale: 0.7, opacity: 0 }}
+                  animate={{ scale: [0.7, 1.25, 1.4], opacity: [0, 0.85, 0] }}
+                  transition={{ duration: 1.1, delay: 1.35, ease: "easeOut" }}
+                  className="absolute -inset-2 rounded-xl border-2 border-emerald-400/80 shadow-[0_0_35px_#34d399] pointer-events-none"
                 />
               </span>
             </h1>
 
-            {/* Laser Engraved Subheading */}
-            <motion.p
-              initial={{ opacity: 0, y: 14, filter: "drop-shadow(0 0 12px #34d399) brightness(1.6)" }}
-              animate={{ opacity: 1, y: 0, filter: "drop-shadow(0 0 0px transparent) brightness(1)" }}
-              transition={{ duration: 0.9, delay: 1.25, ease: "easeOut" }}
-              className="text-base sm:text-lg md:text-xl text-slate-300 font-normal leading-relaxed mb-10 max-w-2xl"
-            >
-              Manufacturing premium industrial components, high-tensile fasteners, shafts, and couplings with absolute precision, structural integrity, and reliability for over 20 years.
-            </motion.p>
+            {/* Enhancement 5: Laser Underline Draw */}
+            <div className="relative mt-3 mb-8 overflow-hidden max-w-lg">
+              <motion.div
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 0.9, delay: 1.45, ease: [0.22, 1, 0.36, 1] }}
+                style={{ transformOrigin: "left center" }}
+                className="h-[2px] bg-gradient-to-r from-primary via-emerald-400 to-transparent shadow-[0_0_12px_#34d399]"
+              />
+            </div>
           </div>
 
-          {/* Action Buttons with Smooth Motion */}
+          {/* 3D Tumbler Staggered Subheading */}
+          <p className="text-base sm:text-lg md:text-xl text-slate-300 font-normal leading-relaxed mb-10 max-w-2xl [perspective:800px]">
+            {"Manufacturing premium industrial components, high-tensile fasteners, shafts, and couplings with absolute precision, structural integrity, and reliability for over 20 years."
+              .split(" ")
+              .map((word, idx) => (
+                <motion.span
+                  key={idx}
+                  initial={{ opacity: 0, rotateX: -65, y: 15 }}
+                  animate={{ opacity: 1, rotateX: 0, y: 0 }}
+                  transition={{
+                    duration: 0.5,
+                    delay: 1.5 + idx * 0.025,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  style={{ transformOrigin: "top center" }}
+                  className="inline-block mr-[0.28em]"
+                >
+                  {word}
+                </motion.span>
+              ))}
+          </p>
+
+          {/* Action Buttons */}
           <motion.div
-            variants={itemVariants}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 2.2 }}
             className="flex flex-col sm:flex-row gap-4 mb-14"
           >
             <motion.div whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.98 }}>
@@ -294,7 +347,9 @@ export default function Hero() {
 
           {/* Banner Statistics */}
           <motion.div
-            variants={itemVariants}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 2.4 }}
             className="grid grid-cols-3 gap-6 pt-8 border-t border-slate-800/80 max-w-lg"
           >
             <motion.div whileHover={{ y: -3 }} transition={{ duration: 0.3 }}>
@@ -310,7 +365,7 @@ export default function Hero() {
               <div className="text-[10px] sm:text-xs text-slate-400 uppercase tracking-widest font-semibold mt-1">Standard Certified</div>
             </motion.div>
           </motion.div>
-        </motion.div>
+        </div>
       </div>
 
       {/* Smooth Animated Scroll Down Indicator */}
@@ -318,7 +373,7 @@ export default function Hero() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: [0, 8, 0] }}
         transition={{
-          opacity: { delay: 1, duration: 0.8 },
+          opacity: { delay: 2.5, duration: 0.8 },
           y: { duration: 2, repeat: Infinity, ease: "easeInOut" },
         }}
         className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 cursor-pointer"
