@@ -89,9 +89,13 @@ export default function Footer() {
           <a href="#" className="hover:text-slate-300">Terms of Service</a>
           <a href="#" className="hover:text-slate-300">Sitemap</a>
         </div>
-        <div className="text-slate-500 flex items-center gap-1.5">
-          <span>Designed & Built with Precision</span>
-          <ArrowUpRight size={12} className="text-primary" />
+        <div className="text-slate-400 flex items-center gap-2 text-xs">
+          <span>Handcrafted with Excellence by</span>
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-primary/10 border border-primary/35 text-primary font-semibold text-xs tracking-wide shadow-sm hover:bg-primary/20 hover:border-primary/60 transition-all duration-300">
+            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+            Preyas Patel
+            <ArrowUpRight size={12} className="text-primary" />
+          </span>
         </div>
       </div>
     </footer>
