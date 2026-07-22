@@ -184,69 +184,78 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Concept 1: 3D Mechanical Tumbler & Snap-Lock Animated Heading */}
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-black tracking-tight leading-[1.15] text-white mb-6 [perspective:1000px]">
-            {[
-              { word: "Precision", isHighlight: false, breakAfter: false },
-              { word: "Engineering", isHighlight: false, breakAfter: true },
-              { word: "Solutions", isHighlight: false, breakAfter: false },
-              { word: "Built", isHighlight: true, breakAfter: false },
-              { word: "to", isHighlight: true, breakAfter: false },
-              { word: "Last", isHighlight: true, breakAfter: false },
-            ].map((item, idx) => (
-              <span key={idx} className="inline-block">
-                <motion.span
-                  initial={{ opacity: 0, rotateX: -85, y: 30, scale: 0.88 }}
-                  animate={{ opacity: 1, rotateX: 0, y: 0, scale: 1 }}
-                  transition={{
-                    duration: 0.85,
-                    delay: 0.25 + idx * 0.12,
-                    type: "spring",
-                    stiffness: 110,
-                    damping: 14,
-                  }}
-                  style={{ transformOrigin: "top center" }}
-                  className="inline-block mr-[0.25em]"
-                >
-                  {item.isHighlight ? (
-                    <motion.span
-                      initial={{ filter: "drop-shadow(0 0 25px rgba(52, 211, 153, 1)) brightness(2)" }}
-                      animate={{ filter: "drop-shadow(0 0 10px rgba(52, 211, 153, 0.4)) brightness(1)" }}
-                      transition={{ delay: 0.25 + idx * 0.12 + 0.5, duration: 1.2 }}
-                      className="bg-gradient-to-r from-primary via-emerald-400 to-primary bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient-slow font-black inline-block"
-                    >
-                      {item.word}
-                    </motion.span>
-                  ) : (
-                    <span className="text-white">{item.word}</span>
-                  )}
-                </motion.span>
-                {item.breakAfter && <br className="hidden sm:inline" />}
-              </span>
-            ))}
-          </h1>
+          {/* Concept 2: CNC Laser-Scan Engraving Effect Container */}
+          <div className="relative">
+            {/* Moving Glowing Laser Scanline Sweep */}
+            <motion.div
+              initial={{ y: "0%", opacity: 0 }}
+              animate={{
+                y: ["0%", "100%"],
+                opacity: [0, 1, 1, 0],
+              }}
+              transition={{
+                duration: 2.0,
+                ease: "easeInOut",
+                delay: 0.2,
+              }}
+              className="absolute left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-emerald-400 to-transparent shadow-[0_0_20px_#34d399] z-20 pointer-events-none"
+            />
 
-          {/* 3D Tumbler Staggered Subheading */}
-          <p className="text-base sm:text-lg md:text-xl text-slate-300 font-normal leading-relaxed mb-10 max-w-2xl [perspective:800px]">
-            {"Manufacturing premium industrial components, high-tensile fasteners, shafts, and couplings with absolute precision, structural integrity, and reliability for over 20 years."
-              .split(" ")
-              .map((word, idx) => (
-                <motion.span
-                  key={idx}
-                  initial={{ opacity: 0, rotateX: -65, y: 15 }}
-                  animate={{ opacity: 1, rotateX: 0, y: 0 }}
-                  transition={{
-                    duration: 0.5,
-                    delay: 1.0 + idx * 0.025,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                  style={{ transformOrigin: "top center" }}
-                  className="inline-block mr-[0.28em]"
-                >
-                  {word}
-                </motion.span>
+            {/* Laser Engraved Heading */}
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-black tracking-tight leading-[1.15] text-white mb-6">
+              {[
+                { word: "Precision", breakAfter: false },
+                { word: "Engineering", breakAfter: true },
+                { word: "Solutions", breakAfter: false },
+              ].map((item, idx) => (
+                <span key={idx} className="inline-block">
+                  <motion.span
+                    initial={{ opacity: 0, filter: "drop-shadow(0 0 25px #34d399) brightness(2.5)", y: 12 }}
+                    animate={{ opacity: 1, filter: "drop-shadow(0 0 0px transparent) brightness(1)", y: 0 }}
+                    transition={{
+                      duration: 0.7,
+                      delay: 0.3 + idx * 0.18,
+                      ease: "easeOut",
+                    }}
+                    className="inline-block mr-[0.25em] text-white"
+                  >
+                    {item.word}
+                  </motion.span>
+                  {item.breakAfter && <br className="hidden sm:inline" />}
+                </span>
               ))}
-          </p>
+
+              {/* Built to Last Laser Beam Highlight */}
+              <span className="relative inline-block overflow-hidden">
+                <motion.span
+                  initial={{ opacity: 0, filter: "drop-shadow(0 0 35px #34d399) brightness(3)", scale: 0.94 }}
+                  animate={{ opacity: 1, filter: "drop-shadow(0 0 10px rgba(52, 211, 153, 0.4)) brightness(1)", scale: 1 }}
+                  transition={{ duration: 0.9, delay: 0.95, ease: "easeOut" }}
+                  className="bg-gradient-to-r from-primary via-emerald-400 to-primary bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient-slow font-black inline-block"
+                >
+                  Built to Last
+                </motion.span>
+
+                {/* Laser Flare Sweep across Built to Last */}
+                <motion.div
+                  initial={{ x: "-100%" }}
+                  animate={{ x: "200%" }}
+                  transition={{ duration: 1.1, delay: 1.05, ease: "easeInOut" }}
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/80 to-transparent w-1/2 -skew-x-12 pointer-events-none"
+                />
+              </span>
+            </h1>
+
+            {/* Laser Engraved Subheading */}
+            <motion.p
+              initial={{ opacity: 0, y: 14, filter: "drop-shadow(0 0 12px #34d399) brightness(1.6)" }}
+              animate={{ opacity: 1, y: 0, filter: "drop-shadow(0 0 0px transparent) brightness(1)" }}
+              transition={{ duration: 0.9, delay: 1.25, ease: "easeOut" }}
+              className="text-base sm:text-lg md:text-xl text-slate-300 font-normal leading-relaxed mb-10 max-w-2xl"
+            >
+              Manufacturing premium industrial components, high-tensile fasteners, shafts, and couplings with absolute precision, structural integrity, and reliability for over 20 years.
+            </motion.p>
+          </div>
 
           {/* Action Buttons with Smooth Motion */}
           <motion.div
