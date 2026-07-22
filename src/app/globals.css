@@ -34,10 +34,15 @@
   --animate-fade-up: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   --animate-fade-in: fade-in 0.6s ease-out forwards;
   --animate-scale-in: scale-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  --animate-gradient-slow: gradient-slow 8s ease infinite;
   
   @keyframes infinite-scroll {
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
+  }
+  @keyframes gradient-slow {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
   }
   @keyframes fade-up {
     from { opacity: 0; transform: translateY(20px); filter: blur(4px); }
