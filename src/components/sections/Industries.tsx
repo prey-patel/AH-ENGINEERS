@@ -73,7 +73,7 @@ const industriesList: Industry[] = [
 
 export default function Industries() {
   return (
-    <section id="industries" className="py-20 lg:py-28 bg-slate-900 text-white overflow-hidden select-none">
+    <section id="industries" className="py-20 lg:py-28 bg-slate-900 text-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         
         {/* Section Header */}

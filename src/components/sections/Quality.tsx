@@ -37,7 +37,7 @@ const checklistItems = [
 
 export default function Quality() {
   return (
-    <section id="quality" className="py-20 lg:py-28 bg-white select-none">
+    <section id="quality" className="py-20 lg:py-28 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
           

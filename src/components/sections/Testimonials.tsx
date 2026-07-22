@@ -48,7 +48,7 @@ export default function Testimonials() {
   };
 
   return (
-    <section className="py-20 lg:py-28 bg-white overflow-hidden select-none">
+    <section className="py-20 lg:py-28 bg-white overflow-hidden">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 md:px-8">
         
         {/* Section Header */}

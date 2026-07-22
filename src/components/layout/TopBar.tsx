@@ -2,7 +2,7 @@ import { MapPin, Phone, Mail, Clock } from "lucide-react";
 
 export default function TopBar() {
   return (
-    <div className="bg-navy text-slate-300 border-b border-slate-800 text-xs py-2 px-4 sm:px-6 md:px-8 hidden lg:block select-none">
+    <div className="bg-navy text-slate-300 border-b border-slate-800 text-xs py-2 px-4 sm:px-6 md:px-8 hidden lg:block">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         {/* Info Contact */}
         <div className="flex items-center gap-6">
@@ -26,7 +26,7 @@ export default function TopBar() {
 
         {/* Certification */}
         <div>
-          <div className="text-[10px] uppercase font-bold tracking-widest text-primary border border-primary/45 rounded px-2 py-0.5 bg-primary/5 select-none">
+          <div className="text-[10px] uppercase font-bold tracking-widest text-primary border border-primary/45 rounded px-2 py-0.5 bg-primary/5">
             ISO 9001:2015 Certified
           </div>
         </div>

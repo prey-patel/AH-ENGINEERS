@@ -76,7 +76,7 @@ export default function Process() {
   const [activeStep, setActiveStep] = useState<number>(0);
 
   return (
-    <section id="process" className="py-20 lg:py-28 bg-slate-50 select-none">
+    <section id="process" className="py-20 lg:py-28 bg-slate-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         
         {/* Section Header */}

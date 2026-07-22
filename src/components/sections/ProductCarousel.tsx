@@ -59,7 +59,7 @@ export default function ProductCarousel() {
   };
 
   return (
-    <section className="py-16 bg-slate-50 border-t border-b border-slate-200/60 overflow-hidden select-none">
+    <section className="py-16 bg-slate-50 border-t border-b border-slate-200/60 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-primary mb-2">

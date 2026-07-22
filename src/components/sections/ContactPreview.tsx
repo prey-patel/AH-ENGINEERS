@@ -10,7 +10,7 @@ export default function ContactPreview() {
   };
 
   return (
-    <section className="bg-slate-50 select-none">
+    <section className="bg-slate-50">
       
       {/* 1. Large Call To Action Banner */}
       <div

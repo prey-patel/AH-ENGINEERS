@@ -51,7 +51,7 @@ const reasons: Reason[] = [
 
 export default function WhyChooseUs() {
   return (
-    <section id="why-choose-us" className="py-20 lg:py-28 bg-white select-none">
+    <section id="why-choose-us" className="py-20 lg:py-28 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         
         {/* Section Header */}
