@@ -184,25 +184,69 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Premium Animated Heading */}
-          <motion.h1
-            variants={itemVariants}
-            className="text-4xl sm:text-5xl lg:text-6xl font-heading font-black tracking-tight leading-[1.15] text-white mb-6"
-          >
-            Precision Engineering <br className="hidden sm:inline" />
-            Solutions{" "}
-            <span className="bg-gradient-to-r from-primary via-emerald-400 to-primary bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient-slow inline-block">
-              Built to Last
-            </span>
-          </motion.h1>
+          {/* Concept 1: 3D Mechanical Tumbler & Snap-Lock Animated Heading */}
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-black tracking-tight leading-[1.15] text-white mb-6 [perspective:1000px]">
+            {[
+              { word: "Precision", isHighlight: false, breakAfter: false },
+              { word: "Engineering", isHighlight: false, breakAfter: true },
+              { word: "Solutions", isHighlight: false, breakAfter: false },
+              { word: "Built", isHighlight: true, breakAfter: false },
+              { word: "to", isHighlight: true, breakAfter: false },
+              { word: "Last", isHighlight: true, breakAfter: false },
+            ].map((item, idx) => (
+              <span key={idx} className="inline-block">
+                <motion.span
+                  initial={{ opacity: 0, rotateX: -85, y: 30, scale: 0.88 }}
+                  animate={{ opacity: 1, rotateX: 0, y: 0, scale: 1 }}
+                  transition={{
+                    duration: 0.85,
+                    delay: 0.25 + idx * 0.12,
+                    type: "spring",
+                    stiffness: 110,
+                    damping: 14,
+                  }}
+                  style={{ transformOrigin: "top center" }}
+                  className="inline-block mr-[0.25em]"
+                >
+                  {item.isHighlight ? (
+                    <motion.span
+                      initial={{ filter: "drop-shadow(0 0 25px rgba(52, 211, 153, 1)) brightness(2)" }}
+                      animate={{ filter: "drop-shadow(0 0 10px rgba(52, 211, 153, 0.4)) brightness(1)" }}
+                      transition={{ delay: 0.25 + idx * 0.12 + 0.5, duration: 1.2 }}
+                      className="bg-gradient-to-r from-primary via-emerald-400 to-primary bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient-slow font-black inline-block"
+                    >
+                      {item.word}
+                    </motion.span>
+                  ) : (
+                    <span className="text-white">{item.word}</span>
+                  )}
+                </motion.span>
+                {item.breakAfter && <br className="hidden sm:inline" />}
+              </span>
+            ))}
+          </h1>
 
-          {/* Subheading */}
-          <motion.p
-            variants={itemVariants}
-            className="text-base sm:text-lg md:text-xl text-slate-300 font-normal leading-relaxed mb-10 max-w-2xl"
-          >
-            Manufacturing premium industrial components, high-tensile fasteners, shafts, and couplings with absolute precision, structural integrity, and reliability for over 20 years.
-          </motion.p>
+          {/* 3D Tumbler Staggered Subheading */}
+          <p className="text-base sm:text-lg md:text-xl text-slate-300 font-normal leading-relaxed mb-10 max-w-2xl [perspective:800px]">
+            {"Manufacturing premium industrial components, high-tensile fasteners, shafts, and couplings with absolute precision, structural integrity, and reliability for over 20 years."
+              .split(" ")
+              .map((word, idx) => (
+                <motion.span
+                  key={idx}
+                  initial={{ opacity: 0, rotateX: -65, y: 15 }}
+                  animate={{ opacity: 1, rotateX: 0, y: 0 }}
+                  transition={{
+                    duration: 0.5,
+                    delay: 1.0 + idx * 0.025,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  style={{ transformOrigin: "top center" }}
+                  className="inline-block mr-[0.28em]"
+                >
+                  {word}
+                </motion.span>
+              ))}
+          </p>
 
           {/* Action Buttons with Smooth Motion */}
           <motion.div
