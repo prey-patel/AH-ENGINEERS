@@ -1,4 +1,3 @@
-import TopBar from "@/components/layout/TopBar";
 import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/sections/Hero";
 import Highlights from "@/components/sections/Highlights";
@@ -15,9 +14,6 @@ import Footer from "@/components/layout/Footer";
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Informational Header */}
-      <TopBar />
-
       {/* Navigation Layer */}
       <Navbar />
 
